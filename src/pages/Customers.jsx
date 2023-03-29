@@ -2,14 +2,14 @@ import React from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
-function Home() {
+function Customers() {
   return (
     <div>
         <Header />
-        <h1>Home</h1>
+        <div>Customers</div>
         <Footer/>
     </div>
   )
 }
 
-export default Home
+export default Customers

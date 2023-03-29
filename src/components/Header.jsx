@@ -13,9 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import ArticleIcon from '@mui/icons-material/Article';
+import { grey, orange } from '@mui/material/colors';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Orders', 'Customers', 'Store Management'];
+const settings = ['Profile', 'Settings', 'Logout'];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -27,7 +28,7 @@ function Header() {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
+  
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -35,6 +36,8 @@ function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  
 
   return (
     <AppBar position="static">
@@ -88,11 +91,21 @@ function Header() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem>
+              <Button color="inherit" href="/orders">
+              Orders
+            </Button>
+              </MenuItem>
+              <MenuItem>
+              <Button color="inherit" href="/customers">
+              Customers
+            </Button>
+              </MenuItem>
+              <MenuItem>
+              <Button color="inherit" href="/Store-management">
+              Store Management
+            </Button>
+              </MenuItem>
             </Menu>
           </Box>
           <ArticleIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -115,21 +128,26 @@ function Header() {
             OSKAR's CMS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button color="inherit" href="/orders">
+              Orders
+            </Button>
+            <Button color="inherit" href="/customers">
+              Customers
+            </Button>
+            <Button color="inherit" href="/store-management">
+              Store Management
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Avatar
+        sx={{ bgcolor: grey }}
+        alt="Avatar button"
+      >
+        OK
+      </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
