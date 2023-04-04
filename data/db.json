@@ -1,0 +1,50 @@
+{
+    "":
+    {
+        "customer_name": "CMS STORE THING"
+        
+      },
+"orders": [
+    {
+      "id": "e2dbfc56-6f16-4e8c-9b0d-57c902ab86bf",
+      "customer_name": "Ellen Hansen",
+      "phoneNumber": 215879112,
+      "status": "20 - Order Placed",
+      "date": "30-03-2023, 03:13",
+      "price": 869.0
+    },
+    {
+      "id": "b8d6d17a-0dd5-47de-af24-6076d2b6b9c6",
+      "customer_name": "Oskar Krüger",
+      "phoneNumber": 215872967,
+      "status": "25 - Order Confirmed",
+      "date": "27-03-2023, 08:59",
+      "price": 4399.0
+    },
+    {
+      "id": "f5716092-2e9d-4640-9d94-67b2946ecf5d",
+      "customer_name": "Pasha Biceps",
+      "phoneNumber": 215876305,
+      "status": "100 - Order Complete",
+      "date": "29-04-2021, 08:18",
+      "price": 1299.0
+    },
+    {
+      "id": "902f2c6e-1c21-4626-a93e-428d7bc0e5e5",
+      "customer_name": "Rasmus Winther",
+      "phoneNumber": 215877563,
+      "status": "25 - Order Confirmed",
+      "date": "29-03-2023, 08:23",
+      "price": 1439.0
+    },
+    {
+      "id": "59f899a8-cd18-4f2e-9a79-00d25e46a3f4",
+      "customer_name": "Peter Nord",
+      "phoneNumber": 215870500,
+      "status": "90 - Order Cancelled",
+      "date": "13-06-2021, 19:45",
+      "price": 99.0
+    }
+  ]
+  
+}

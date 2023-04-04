@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../main.css";
 import Header from "../components/Header";
 import Grid from "@mui/material/Grid"; // Grid version 1
@@ -30,11 +30,25 @@ const rows = [
 ];
 
 function Orders() {
+  
+const [orders, setOrders] = React.useState([]);
+
+useEffect(() => {
+  fetch("http://localhost:8000/orders")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      setOrders(data);
+    });
+}, []);
+
+
   return (
     <div>
       <Header />
       <div className="main">
         <Container>
+         
           <TableContainer component={Paper} sx={{margin: '10px'}}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead sx={{border: "2px solid black"}}>
@@ -47,18 +61,18 @@ function Orders() {
                 </TableRow>
               </TableHead>
               <TableBody sx={{border: "1px solid darkgrey"}}>
-                {rows.map((row) => (
+                {orders.map((order) => (
                   <TableRow
-                    key={row.name}
+                    key={order.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {order.customer_name}
                     </TableCell>
-                    <TableCell align="left">{row.calories}</TableCell>
-                    <TableCell align="left">{row.fat}</TableCell>
-                    <TableCell align="left">{row.carbs}</TableCell>
-                    <TableCell align="left">{row.protein}</TableCell>
+                    <TableCell align="left">{order.id}</TableCell>
+                    <TableCell align="left">{order.status}</TableCell>
+                    <TableCell align="left">{order.date}</TableCell>
+                    <TableCell align="left">{order.price}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
