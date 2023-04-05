@@ -40,7 +40,7 @@ function Header() {
   
 
   return (
-    <AppBar position="static">
+    <AppBar className='navbar' position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <ArticleIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

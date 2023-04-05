@@ -3,13 +3,14 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 function StoreManagement() {
+
   return (
     <div>
-        <Header />
-        <div>StoreManagement</div>
-        <Footer/>
+      <Header/>
+      
+      <Footer/>
     </div>
-  )
+  );
 }
 
-export default StoreManagement
+export default StoreManagement;

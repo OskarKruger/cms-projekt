@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import "../main.css";
 import Header from "../components/Header";
-import Grid from "@mui/material/Grid"; // Grid version 1
-import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { Box, Container, Stack } from "@mui/system";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import {
   Table,
   TableBody,
@@ -14,20 +15,9 @@ import {
   TableRow,
   Typography,
   Pagination,
+  Button,
 } from "@mui/material";
 import Footer from "../components/Footer";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Ellen Hansen", 215879112, "20 - Order Placed", "30-03-2023, 03:13", 869.00),
-  createData("Oskar Krüger", 215872967, "25 - Order Confirmed", "27-03-2023, 08:59", 4399.00),
-  createData("Pasha Biceps", 215876305, " 100 - Order Complete", "29-04-2021, 08:18", 1299.00),
-  createData("Rasmus Winther", 215877563, "25 - Order Confirmed", "29-03-2023, 08:23", 1439.00),
-  createData("Peter Nord", 215870500, "90 - Order Cancelled", "13-06-2021, 19:45", 99.00),
-];
 
 function Orders() {
   
@@ -54,6 +44,7 @@ useEffect(() => {
               <TableHead sx={{border: "2px solid black"}}>
                 <TableRow sx={{ backgroundColor: "lightgrey" }}>
                   <TableCell>Customer Name</TableCell>
+                  <TableCell align="left">Customer Id</TableCell>
                   <TableCell align="left">Order Id</TableCell>
                   <TableCell align="left">Order Status</TableCell>
                   <TableCell align="left">Date</TableCell>
@@ -69,7 +60,8 @@ useEffect(() => {
                     <TableCell component="th" scope="row">
                       {order.customer_name}
                     </TableCell>
-                    <TableCell align="left">{order.id}</TableCell>
+                    <TableCell align="left">{order.customer_id}</TableCell>
+                    <TableCell align="left">{order.orderID}</TableCell>
                     <TableCell align="left">{order.status}</TableCell>
                     <TableCell align="left">{order.date}</TableCell>
                     <TableCell align="left">{order.price}</TableCell>
@@ -82,6 +74,9 @@ useEffect(() => {
       
       <Pagination count={8} />
     </Stack>
+        <Button variant="contained" sx={{margin: "10px"}} startIcon={<ShoppingCartIcon />}>New Order</Button>
+        <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DeleteIcon />}>Removes Order</Button>
+        <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DesignServicesIcon />}>Edit Order</Button>
         </Container>
       </div>
       <Footer/>

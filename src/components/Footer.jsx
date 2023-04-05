@@ -10,7 +10,10 @@ function Footer() {
         width: "100%",
         position: "fixed",
         bottom: 0,
-        width: "100%",
+        left: "0px",
+        marginLeft: "auto",
+        marginRight: "auto",
+        textAlign: "center",
       }}
       component="footer"
       square
