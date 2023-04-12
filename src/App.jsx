@@ -4,6 +4,7 @@ import Orders from "./pages/Orders";
 import Home from "./pages/Home";
 import Customers from "./pages/Customers";
 import StoreManagement from "./pages/StoreManagement";
+import CreateOrder from "./components/CreateOrder";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/store-management" element={<StoreManagement />} />
+        <Route path="/create-order" element={<CreateOrder />} />
       </Routes>
     </BrowserRouter>
   );

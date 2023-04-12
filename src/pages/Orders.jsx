@@ -5,6 +5,7 @@ import { Box, Container, Stack } from "@mui/system";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
+import axios from "axios";
 import {
   Table,
   TableBody,
@@ -24,12 +25,12 @@ function Orders() {
 const [orders, setOrders] = React.useState([]);
 
 useEffect(() => {
-  fetch("http://localhost:8000/orders")
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      setOrders(data);
-    });
+  axios.get('http://localhost:8000/orders')
+    .then(response => {
+      console.log(response.data);
+      setOrders(response.data);
+    })
+    .catch(error => console.error(error));
 }, []);
 
 
@@ -74,7 +75,7 @@ useEffect(() => {
       
       <Pagination count={8} />
     </Stack>
-        <Button variant="contained" sx={{margin: "10px"}} startIcon={<ShoppingCartIcon />}>New Order</Button>
+        <Button variant="contained" sx={{margin: "10px"}} href="/create-order" startIcon={<ShoppingCartIcon />}>New Order</Button>
         <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DeleteIcon />}>Removes Order</Button>
         <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DesignServicesIcon />}>Edit Order</Button>
         </Container>

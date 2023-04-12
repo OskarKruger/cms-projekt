@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PersonIcon from '@mui/icons-material/Person';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import { Box, Container, Stack } from "@mui/system";
+import axios from 'axios';
 import {
   Table,
   TableBody,
@@ -24,12 +25,12 @@ function Customers() {
   const [customers, setCustomers] = React.useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/customers")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setCustomers(data);
-      });
+    axios.get('http://localhost:8000/customers')
+      .then(response => {
+        console.log(response.data);
+        setCustomers(response.data);
+      })
+      .catch(error => console.error(error));
   }, []);
 
   return (
@@ -41,6 +42,7 @@ function Customers() {
             <TableHead sx={{ border: "2px solid black" }}>
               <TableRow sx={{ backgroundColor: "lightgrey" }}>
                 <TableCell>Customer Name</TableCell>
+                <TableCell>Customer Id</TableCell>
               </TableRow>
             </TableHead>
             <TableBody sx={{ border: "1px solid darkgrey" }}>
