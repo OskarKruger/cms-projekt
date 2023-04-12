@@ -2,7 +2,7 @@
   "customers": [
     {
       "customer_name": "Ellen Hansen",
-      "customer_id": "e2dbfc56-6f16-4e8c-9b0d-57c902ab86bf"
+      "id": "e2dbfc56-6f16-4e8c-9b0d-57c902ab86bf"
     },
     {
       "customer_name": "Pasha Biceps",
@@ -19,6 +19,33 @@
     {
       "customer_name": "Peter Nord",
       "customer_id": "59f899a8-cd18-4f2e-9a79-00d25e46a3f4"
+    }
+  ],
+  "products": [
+    {
+      "product_name": "Surferboard 3000",
+      "product_id": "6c7e4642-2fc2-4766-9b2d-7786d69a6f28",
+      "product_cost": 1000.0
+    },
+    {
+      "product_name": "Ultra Pepsi Max",
+      "product_id": "f8ec3c25-246f-40e7-9a5b-f3b2615d74a5",
+      "product_cost": 20.0
+    },
+    {
+      "product_name": "Jabra Galaxy Slim pro",
+      "product_id": "7e0d7298-5067-4f1e-a55f-2051099b9d32",
+      "product_cost": 199.0
+    },
+    {
+      "product_name": "Pear Polo Premium",
+      "product_id": "354fa2b7-b0b8-4c7b-b67e-becf7e5b1d96",
+      "product_cost": 99.0
+    },
+    {
+      "product_name": "Adidas Monster T-Shirt",
+      "product_id": "81af18da-7c37-4a2a-af52-7994f9aa8366",
+      "product_cost": 1299.0
     }
   ],
 "orders": [
