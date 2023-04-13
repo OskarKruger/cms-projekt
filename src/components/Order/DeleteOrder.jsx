@@ -110,7 +110,7 @@ function DeleteOrder() {
           }}
           label="Order price"
           id="filled"
-          value={selectedOrderId ? selectedOrderId.price: ""}
+          value={selectedOrderId ? `${selectedOrderId.price.toFixed(2)} DKK`: ""}
         />
       </Container>
 
@@ -124,7 +124,23 @@ function DeleteOrder() {
           value={selectedOrderId ? selectedOrderId.date : ""}
         />
       </Container>
-      
+      <Container sx={{ margin: "10px" }}>
+        <TextField
+          InputProps={{
+            readOnly: true,
+          }}
+          label="Products"
+          id="filled"
+          multiline
+          rows={4}
+          value={
+            selectedOrderId
+              ? selectedOrderId.products.map((product) => product.product_name).join(", ")
+              : ""
+          }
+        />
+      </Container>
+
       <Button variant="contained" sx={{ paddingleft: "10px" ,margin: "10px",  }} onClick={deleteorderbyid}>Delete</Button>
 
       

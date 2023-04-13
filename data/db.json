@@ -53,41 +53,117 @@
       "customer_id": "e2dbfc56-6f16-4e8c-9b0d-57c902ab86bf",
       "customer_name": "Ellen Hansen",
       "orderID": 215879112,
+      "products": [
+        {
+          "product_id": "6c7e4642-2fc2-4766-9b2d-7786d69a6f28",
+          "product_name": "Surferboard 3000",
+          "product_cost": 1000.0,
+          "quantity": 1
+        },
+        {
+          "product_id": "354fa2b7-b0b8-4c7b-b67e-becf7e5b1d96",
+          "product_name": "Pear Polo Premium",
+          "product_cost": 99.0,
+          "quantity": 1
+        },
+        {
+          "product_id": "f8ec3c25-246f-40e7-9a5b-f3b2615d74a5",
+          "product_name": "Ultra Pepsi Max",
+          "product_cost": 20.0,
+          "quantity": 1
+        }
+      ],
       "status": "20 - Order Placed",
       "date": "30-03-2023, 03:13",
-      "price": 869.0
+      "price": 1119.0
     },
     {
       "customer_id": "b8d6d17a-0dd5-47de-af24-6076d2b6b9c6",
       "customer_name": "Oskar Krüger",
       "orderID": 215872967,
+      "products": [
+        {
+          "product_id": "81af18da-7c37-4a2a-af52-7994f9aa8366",
+          "product_name": "Adidas Monster T-Shirt",
+          "product_cost": 1299.0,
+          "quantity": 1
+        },
+        {
+          "product_id": "7e0d7298-5067-4f1e-a55f-2051099b9d32",
+          "product_name": "Jabra Galaxy Slim pro",
+          "product_cost": 199.0,
+          "quantity": 1
+        }
+      ],
       "status": "25 - Order Confirmed",
       "date": "27-03-2023, 08:59",
-      "price": 4399.0
+      "price": 1498.0
     },
     {
       "customer_id": "f5716092-2e9d-4640-9d94-67b2946ecf5d",
       "customer_name": "Pasha Biceps",
       "orderID": 215876305,
+      "products": [
+        {
+          "product_id": "81af18da-7c37-4a2a-af52-7994f9aa8366",
+          "product_name": "Adidas Monster T-Shirt",
+          "product_cost": 1299.0,
+          "quantity": 1
+        },
+        {
+            "product_name": "Surferboard 3000",
+            "product_id": "6c7e4642-2fc2-4766-9b2d-7786d69a6f28",
+            "product_cost": 1000.0,
+            "quantity": 1
+        }
+      ],
       "status": "100 - Order Complete",
       "date": "29-04-2021, 08:18",
-      "price": 1299.0
+      "price": 2299.0
     },
     {
       "customer_id": "902f2c6e-1c21-4626-a93e-428d7bc0e5e5",
       "customer_name": "Rasmus Winther",
       "orderID": 215877563,
+      "products": [
+        {
+          "product_id": "81af18da-7c37-4a2a-af52-7994f9aa8366",
+          "product_name": "Adidas Monster T-Shirt",
+          "product_cost": 1299.0,
+          "quantity": 1
+        },
+        {
+          "product_name": "Pear Polo Premium",
+          "product_id": "354fa2b7-b0b8-4c7b-b67e-becf7e5b1d96",
+          "product_cost": 99.0,
+          "quantity": 1
+        }
+      ],
       "status": "25 - Order Confirmed",
       "date": "29-03-2023, 08:23",
-      "price": 1439.0
+      "price": 1398.0
     },
     {
       "customer_id": "59f899a8-cd18-4f2e-9a79-00d25e46a3f4",
       "customer_name": "Peter Nord",
       "orderID": 215870500,
+      "products": [
+        {
+          "product_name": "Pear Polo Premium",
+          "product_id": "354fa2b7-b0b8-4c7b-b67e-becf7e5b1d96",
+          "product_cost": 99.0,
+          "quantity": 1
+        },
+        {
+          "product_id": "7e0d7298-5067-4f1e-a55f-2051099b9d32",
+          "product_name": "Jabra Galaxy Slim pro",
+          "product_cost": 199.0,
+          "quantity": 1
+        }
+      ],
       "status": "90 - Order Cancelled",
       "date": "13-06-2021, 19:45",
-      "price": 99.0
+      "price": 298.0
     }
   ]
   
