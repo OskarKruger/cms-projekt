@@ -65,18 +65,21 @@ function DeleteOrder() {
       .catch((error) => console.error(error));
   }, []);
 
-  const deleteorderbyid = () => {      axios
-    .delete(`http://localhost:8000/order/${order.id}`, {
-      headers: { "Content-Type": "application/json" },
-    })
-    .then((response) => {
-      alert("order deleted successfully");
-      // navigate("/orders");
-    })
-    .catch((error) => {
-      console.log(error);
-    });};
-
+  const deleteorderbyid = () => {
+    if (selectedOrderId) {
+      axios
+        .delete(`http://localhost:8000/orders/${selectedOrderId.id}`, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((response) => {
+          alert("order deleted successfully");
+          navigate("/orders");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
     
 
   return (
@@ -122,6 +125,16 @@ function DeleteOrder() {
           label="Order date"
           id="filled"
           value={selectedOrderId ? selectedOrderId.date : ""}
+        />
+      </Container>
+      <Container sx={{ margin: "10px" }}>
+        <TextField
+          InputProps={{
+            readOnly: true,
+          }}
+          label="Order date"
+          id="filled"
+          value={selectedOrderId ? selectedOrderId.status : ""}
         />
       </Container>
       <Container sx={{ margin: "10px" }}>
