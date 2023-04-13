@@ -2,7 +2,7 @@
   "customers": [
     {
       "customer_name": "Ellen Hansen",
-      "id": "e2dbfc56-6f16-4e8c-9b0d-57c902ab86bf"
+      "customer_id": "e2dbfc56-6f16-4e8c-9b0d-57c902ab86bf"
     },
     {
       "customer_name": "Pasha Biceps",

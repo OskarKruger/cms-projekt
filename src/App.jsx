@@ -4,7 +4,8 @@ import Orders from "./pages/Orders";
 import Home from "./pages/Home";
 import Customers from "./pages/Customers";
 import StoreManagement from "./pages/StoreManagement";
-import CreateOrder from "./components/CreateOrder";
+import CreateOrder from "./components/Order/CreateOrder";
+import DeleteOrder from "./components/Order/DeleteOrder";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/customers" element={<Customers />} />
         <Route path="/store-management" element={<StoreManagement />} />
         <Route path="/create-order" element={<CreateOrder />} />
+        <Route path="/delete-order" element={<DeleteOrder />} />
       </Routes>
     </BrowserRouter>
   );
