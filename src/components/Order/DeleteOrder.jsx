@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Header from "../Header";
 import Footer from "../Footer";
 import {
-    Button,
+  Button,
   Container,
   FormControl,
   InputLabel,
@@ -21,8 +21,12 @@ function DeleteOrder() {
   const [selectedCustomerId, setSelectedCustomerId] = React.useState("");
   const [selectedProductId, setSelectedProductId] = React.useState("");
   const [selectedOrderId, setSelectedOrderId] = React.useState("");
-
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
+
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   const handleCustomerChange = (event) => {
     setSelectedCustomerId(event.target.value);
@@ -40,7 +44,6 @@ function DeleteOrder() {
     axios
       .get("http://localhost:8000/customers")
       .then((response) => {
-        console.log(response.data);
         setCustomers(response.data);
       })
       .catch((error) => console.error(error));
@@ -50,7 +53,6 @@ function DeleteOrder() {
     axios
       .get("http://localhost:8000/products")
       .then((response) => {
-        console.log(response.data);
         setProducts(response.data);
       })
       .catch((error) => console.error(error));
@@ -59,7 +61,6 @@ function DeleteOrder() {
     axios
       .get("http://localhost:8000/orders")
       .then((response) => {
-        console.log(response.data);
         setorders(response.data);
       })
       .catch((error) => console.error(error));
@@ -80,11 +81,24 @@ function DeleteOrder() {
         });
     }
   };
-    
+  const filteredOrders = orders.filter(
+    (order) =>
+      order.id.toString().toLowerCase().includes(searchValue.toLowerCase()) &&
+      (!selectedCustomerId ||
+        order.customer_id === parseInt(selectedCustomerId))
+  );
 
   return (
     <div>
       <Header />
+      <Container sx={{ margin: "10px" }}>
+        <TextField
+          label="Search by ID"
+          value={searchValue}
+          onChange={handleSearchChange}
+          fullWidth
+        />
+      </Container>
       <Container sx={{ margin: "10px" }}>
         <FormControl fullWidth>
           <InputLabel id="order-selector-label">Order</InputLabel>
@@ -97,15 +111,19 @@ function DeleteOrder() {
             onChange={handleOrderChange}
             sx={{ width: "50vw" }}
           >
-            {orders.map((order) => (
-              <MenuItem key={order.id} value={order}>
-                {order.id} - {order.customer_name}
+            {filteredOrders.map((order) => (
+              <MenuItem
+                key={order.id}
+                value={order}
+                sx={{ marginBottom: "8px" }}
+              >
+                {order.id} - {order.customer_name} - {order.date}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
       </Container>
-      
+
       <Container sx={{ margin: "10px" }}>
         <TextField
           InputProps={{
@@ -113,7 +131,9 @@ function DeleteOrder() {
           }}
           label="Order price"
           id="filled"
-          value={selectedOrderId ? `${selectedOrderId.price.toFixed(2)} DKK`: ""}
+          value={
+            selectedOrderId ? `${selectedOrderId.price.toFixed(2)} DKK` : ""
+          }
         />
       </Container>
 
@@ -148,15 +168,22 @@ function DeleteOrder() {
           rows={4}
           value={
             selectedOrderId
-              ? selectedOrderId.products.map((product) => product.product_name).join(", ")
+              ? selectedOrderId.products
+                  .map((product) => product.product_name)
+                  .join(", ")
               : ""
           }
         />
       </Container>
 
-      <Button variant="contained" sx={{ paddingleft: "10px" ,margin: "10px",  }} onClick={deleteorderbyid}>Delete</Button>
+      <Button
+        variant="contained"
+        sx={{ paddingleft: "10px", margin: "10px" }}
+        onClick={deleteorderbyid}
+      >
+        Delete
+      </Button>
 
-      
       <Footer />
     </div>
   );

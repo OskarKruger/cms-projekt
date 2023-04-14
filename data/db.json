@@ -180,6 +180,28 @@
       "date": "14.4.2023 10.27.04",
       "price": 1399,
       "id": 215879116
+    },
+    {
+      "customer_id": "f5716092-2e9d-4640-9d94-67b2946ecf5d",
+      "customer_name": "Pasha Biceps",
+      "products": [
+        {
+          "product_id": "f8ec3c25-246f-40e7-9a5b-f3b2615d74a5",
+          "product_name": "Ultra Pepsi Max",
+          "product_cost": 20,
+          "quantity": 20
+        },
+        {
+          "product_id": "7e0d7298-5067-4f1e-a55f-2051099b9d32",
+          "product_name": "Jabra Galaxy Slim pro",
+          "product_cost": 199,
+          "quantity": 1
+        }
+      ],
+      "status": "20 - Order Placed",
+      "date": "14.4.2023 11.40.58",
+      "price": 599,
+      "id": 215879117
     }
   ]
 }
