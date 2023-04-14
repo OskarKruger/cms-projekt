@@ -98,8 +98,8 @@ function DeleteOrder() {
             sx={{ width: "50vw" }}
           >
             {orders.map((order) => (
-              <MenuItem key={order.orderID} value={order}>
-                {order.orderID} - {order.customer_name}
+              <MenuItem key={order.id} value={order}>
+                {order.id} - {order.customer_name}
               </MenuItem>
             ))}
           </Select>

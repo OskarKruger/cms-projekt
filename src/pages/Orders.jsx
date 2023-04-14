@@ -47,6 +47,7 @@ useEffect(() => {
                   <TableCell>Customer Name</TableCell>
                   <TableCell align="left">Customer Id</TableCell>
                   <TableCell align="left">Order Id</TableCell>
+                  <TableCell align="left">Product(s)</TableCell>
                   <TableCell align="left">Order Status</TableCell>
                   <TableCell align="left">Date</TableCell>
                   <TableCell align="left">Order Total</TableCell>
@@ -62,7 +63,8 @@ useEffect(() => {
                       {order.customer_name}
                     </TableCell>
                     <TableCell align="left">{order.customer_id}</TableCell>
-                    <TableCell align="left">{order.orderID}</TableCell>
+                    <TableCell align="left">{order.id}</TableCell>
+                    <TableCell align="left">{order.products.map((product) => product.product_name).join(', ')}</TableCell>
                     <TableCell align="left">{order.status}</TableCell>
                     <TableCell align="left">{order.date}</TableCell>
                     <TableCell align="left">{order.price}</TableCell>
