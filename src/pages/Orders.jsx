@@ -78,7 +78,7 @@ useEffect(() => {
       <Pagination count={8} />
     </Stack>
         <Button variant="contained" sx={{margin: "10px"}} href="/create-order" startIcon={<ShoppingCartIcon />}>New Order</Button>
-        <Button variant="outlined" sx={{margin: "10px"}} href="/delete-order" startIcon={<DeleteIcon />}>Removes Order</Button>
+        <Button variant="outlined" sx={{margin: "10px"}} href="/delete-order" startIcon={<DeleteIcon />}>Delete Order</Button>
         <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DesignServicesIcon />}>Edit Order</Button>
         </Container>
       </div>

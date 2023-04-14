@@ -11,6 +11,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 
 function DeleteOrder() {
@@ -91,6 +92,7 @@ function DeleteOrder() {
   return (
     <div>
       <Header />
+      <Button startIcon={<ArrowBackIcon />} href="/orders">Return</Button>
       <Container sx={{ margin: "10px" }}>
         <TextField
           label="Search by ID"

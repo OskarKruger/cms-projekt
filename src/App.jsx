@@ -7,6 +7,7 @@ import StoreManagement from "./pages/StoreManagement";
 import CreateOrder from "./components/Order/CreateOrder";
 import DeleteOrder from "./components/Order/DeleteOrder";
 import CreateCustomer from "./components/Customer/CreateCustomer";
+import DeleteCustomer from "./components/Customer/DeleteCustomer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/create-order" element={<CreateOrder />} />
         <Route path="/delete-order" element={<DeleteOrder />} />
         <Route path="/create-customer" element={<CreateCustomer />} />
+        <Route path="/delete-customer" element={<DeleteCustomer />} />
       </Routes>
     </BrowserRouter>
   );

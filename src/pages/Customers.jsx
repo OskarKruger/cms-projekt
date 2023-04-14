@@ -64,7 +64,7 @@ function Customers() {
           <Pagination count={8} />
         </Stack>
         <Button variant="contained" sx={{margin: "10px"}} href="/create-customer" startIcon={<PersonIcon />}>New Customer</Button>
-        <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DeleteIcon />}>Removes Customer</Button>
+        <Button variant="outlined" sx={{margin: "10px"}} href="/delete-customer" startIcon={<DeleteIcon />}>Delete Customer</Button>
         <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DesignServicesIcon />}>Edit Customer</Button>
         
       </Container>

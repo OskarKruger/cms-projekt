@@ -12,6 +12,7 @@ import {
   Select,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -117,7 +118,7 @@ function CreateOrder() {
       )
       .then((response) => {
         alert("Order created successfully");
-        // navigate("/orders");
+        navigate("/orders");
       })
       .catch((error) => {
         console.log(error);
@@ -126,96 +127,103 @@ function CreateOrder() {
 
   return (
     <>
-    <div className="main">
       <Header />
-      <h1>Create new order</h1>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <div>
-          <Box
-            component="form"
-            sx={{
-              "& .MuiTextField-root": { m: 1, width: "25ch" },
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <Container sx={{ margin: "10px",}}>
-              <FormControl fullWidth>
-                <InputLabel id="customer-selector-label">Customer</InputLabel>
-                <Select
-                  labelId="customer-selector-label"
-                  id="customer-selector"
-                  value={selectedCustomerId}
-                  required
-                  label="Customer"
-                  onChange={handleCustomerChange}
-                  sx={{ width: "30vw" }}
-                >
-                  {customers.map((customer) => (
-                    <MenuItem key={customer.id} value={customer}>
-                      {customer.customer_name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Container>
-            <Container sx={{ margin: "10px" }}>
-              <FormControl fullWidth>
-                <InputLabel id="product-selector-label">Product</InputLabel>
-                <Select
-                  labelId="product-selector-label"
-                  id="product-selector"
-                  value={selectedProductId}
-                  required
-                  label="Product"
-                  onChange={handleProductChange}
-                  sx={{ width: "30vw" }}
-                >
-                  {products.map((product) => (
-                    <MenuItem key={product.product_id} value={product}>
-                      {product.product_name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Container>
-            <Container sx={{ margin: "10px" }}>
-        <TextField
-          id="quantity"
-          label="Quantity"
-          type="number"
-          value={selectedQuantity}
-          onChange={handleQuantityChange}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-      </Container>
-          </Box>
+      <Button startIcon={<ArrowBackIcon />} href="/orders">
+        Return
+      </Button>
+      <div className="main">
+        <h1>Create new order</h1>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <div>
+            <Box
+              component="form"
+              sx={{
+                "& .MuiTextField-root": { m: 1, width: "25ch" },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <Container sx={{ margin: "10px" }}>
+                <FormControl fullWidth>
+                  <InputLabel id="customer-selector-label">Customer</InputLabel>
+                  <Select
+                    labelId="customer-selector-label"
+                    id="customer-selector"
+                    value={selectedCustomerId}
+                    required
+                    label="Customer"
+                    onChange={handleCustomerChange}
+                    sx={{ width: "30vw" }}
+                  >
+                    {customers.map((customer) => (
+                      <MenuItem key={customer.id} value={customer}>
+                        {customer.customer_name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Container>
+              <Container sx={{ margin: "10px" }}>
+                <FormControl fullWidth>
+                  <InputLabel id="product-selector-label">Product</InputLabel>
+                  <Select
+                    labelId="product-selector-label"
+                    id="product-selector"
+                    value={selectedProductId}
+                    required
+                    label="Product"
+                    onChange={handleProductChange}
+                    sx={{ width: "30vw" }}
+                  >
+                    {products.map((product) => (
+                      <MenuItem key={product.product_id} value={product}>
+                        {product.product_name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Container>
+              <Container sx={{ margin: "10px" }}>
+                <TextField
+                  id="quantity"
+                  label="Quantity"
+                  type="number"
+                  value={selectedQuantity}
+                  onChange={handleQuantityChange}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Container>
+            </Box>
+          </div>
+          <TextField
+            id="Product-list"
+            label="Cart"
+            multiline
+            rows={4}
+            value={cart.map((product) => {
+              return `${product.product_name} x ${product.quantity} = ${
+                product.product_cost * product.quantity
+              }`;
+            })}
+          />
         </div>
-        <TextField
-          id="Product-list"
-          label="Cart"
-          multiline
-          rows={4}
-          value={cart.map((product) => {
-            return `${product.product_name} x ${product.quantity} = ${
-              product.product_cost * product.quantity
-            }`;
-          })}
-        />
+        <Button variant="contained" onClick={addToCart} sx={{ margin: "20px" }}>
+          Add to cart
+        </Button>
+        <Button
+          variant="contained"
+          onClick={createProduct}
+          sx={{ margin: "20px" }}
+        >
+          Create order
+        </Button>
+        <Footer />
       </div>
-      <Button variant="contained" onClick={addToCart} sx={{margin: "20px"}}>
-        Add to cart
-      </Button>
-      <Button variant="contained" onClick={createProduct} sx={{margin: "20px"}}>
-        Create order
-      </Button>
-      <Footer />
-    </div>
     </>
   );
 }
