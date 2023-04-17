@@ -204,6 +204,22 @@
       "date": "14.4.2023 13.18.45",
       "price": 100,
       "id": 216598853
+    },
+    {
+      "customer_id": "3a114840-15ea-4b50-8a5e-8e9bf1ac9b0f",
+      "customer_name": "Oskar Krüger",
+      "products": [
+        {
+          "product_id": "7e0d7298-5067-4f1e-a55f-2051099b9d32",
+          "product_name": "Jabra Galaxy Slim pro",
+          "product_cost": 199,
+          "quantity": 1
+        }
+      ],
+      "status": "20 - Order Placed",
+      "date": "17.04.2023, 10:52:35",
+      "price": 199,
+      "id": 216598856
     }
   ]
 }

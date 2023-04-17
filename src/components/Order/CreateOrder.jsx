@@ -100,11 +100,16 @@ function CreateOrder() {
       customer_name: selectedCustomerId.customer_name,
       products: cart,
       status: "20 - Order Placed",
-      date: new Date().toLocaleString(),
-      price: cart.reduce(
-        (total, product) => total + product.product_cost * product.quantity,
-        0
-      ),
+      date: new Intl.DateTimeFormat('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: false
+      }).format(new Date()).replace(/[/]/g, '.'),
+      price: cart.reduce((total, product) => total + product.product_cost * product.quantity, 0),
     };
 
     axios
