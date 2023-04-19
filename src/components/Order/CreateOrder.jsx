@@ -25,6 +25,7 @@ function CreateOrder() {
   const [selectedCustomerId, setSelectedCustomerId] = React.useState("");
   const [selectedProductId, setSelectedProductId] = React.useState("");
   const [selectedQuantity, setSelectedQuantity] = React.useState(1);
+  const [id, setId] = useState(uuidv4());
 
   const navigate = useNavigate();
 
@@ -47,16 +48,16 @@ function CreateOrder() {
     }
     const updatedCart = [...cart];
     const existingProductIndex = updatedCart.findIndex(
-      (item) => item.product_id === selectedProductId.product_id
+      (item) => item.productId === selectedProductId.productId
     );
 
     if (existingProductIndex > -1) {
       updatedCart[existingProductIndex].quantity += Number(selectedQuantity);
     } else {
       updatedCart.push({
-        product_id: selectedProductId.product_id,
-        product_name: selectedProductId.product_name,
-        product_cost: selectedProductId.product_cost,
+        productId: selectedProductId.productId,
+        productName: selectedProductId.productName,
+        productCost: selectedProductId.productCost,
         quantity: Number(selectedQuantity),
       });
     }
@@ -78,7 +79,7 @@ function CreateOrder() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/products")
+      .get("https://localhost:5001/api/products/products")
       .then((response) => {
         console.log(response.data);
         setProducts(response.data);
@@ -95,26 +96,20 @@ function CreateOrder() {
       alert("Please add at least one product to the cart");
       return;
     }
+  
+    //const orderId = id; 
     const orderData = {
-      customer_id: selectedCustomerId.customer_id,
-      customer_name: selectedCustomerId.customer_name,
+      //id: orderId, 
+      customerId: selectedCustomerId.customer_id,
+      customerName: selectedCustomerId.customer_name,
       products: cart,
       status: "20 - Order Placed",
-      date: new Intl.DateTimeFormat('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-        hour12: false
-      }).format(new Date()).replace(/[/]/g, '.'),
-      price: cart.reduce((total, product) => total + product.product_cost * product.quantity, 0),
+      price: cart.reduce((total, product) => total + product.productCost * product.quantity, 0),
     };
-
+  
     axios
       .post(
-        "http://localhost:8000/orders",
+        "https://localhost:5001/api/orders/CreateOrders",
         orderData,
         {},
         {
@@ -122,6 +117,7 @@ function CreateOrder() {
         }
       )
       .then((response) => {
+        console.log(response.data);
         alert("Order created successfully");
         navigate("/orders");
       })
@@ -184,8 +180,8 @@ function CreateOrder() {
                     sx={{ width: "30vw" }}
                   >
                     {products.map((product) => (
-                      <MenuItem key={product.product_id} value={product}>
-                        {product.product_name}
+                      <MenuItem key={product.productId} value={product}>
+                        {product.productName}
                       </MenuItem>
                     ))}
                   </Select>
@@ -211,8 +207,8 @@ function CreateOrder() {
             multiline
             rows={4}
             value={cart.map((product) => {
-              return `${product.product_name} x ${product.quantity} = ${
-                product.product_cost * product.quantity
+              return `${product.productName} x ${product.quantity} = ${
+                product.productCost * product.quantity
               }`;
             })}
           />

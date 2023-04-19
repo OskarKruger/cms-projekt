@@ -25,7 +25,7 @@ function Customers() {
   const [customers, setCustomers] = React.useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/customers')
+    axios.get('https://localhost:5001/api/customers/customers')
       .then(response => {
         console.log(response.data);
         setCustomers(response.data);
@@ -52,9 +52,9 @@ function Customers() {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {customer.customer_name}
+                    {customer.customerName}
                   </TableCell>
-                  <TableCell align="left">{customer.customer_id}</TableCell>
+                  <TableCell align="left">{customer.customerId}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

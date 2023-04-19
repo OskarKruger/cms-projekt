@@ -25,14 +25,13 @@ function Orders() {
 const [orders, setOrders] = React.useState([]);
 
 useEffect(() => {
-  axios.get('http://localhost:8000/orders')
+  axios.get('https://localhost:5001/api/orders/orders')
     .then(response => {
       console.log(response.data);
       setOrders(response.data);
     })
     .catch(error => console.error(error));
 }, []);
-
 
   return (
     <div>
@@ -56,15 +55,15 @@ useEffect(() => {
               <TableBody sx={{border: "1px solid darkgrey"}}>
                 {orders.map((order) => (
                   <TableRow
-                    key={order.name}
+                    key={order.date}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {order.customer_name}
+                      {order.customerName}
                     </TableCell>
-                    <TableCell align="left">{order.customer_id}</TableCell>
+                    <TableCell align="left">{order.customerId}</TableCell>
                     <TableCell align="left">{order.id}</TableCell>
-                    <TableCell align="left">{order.products.map((product) => product.product_name).join(', ')}</TableCell>
+                    <TableCell align="left">{order.products.map((product) => product.productName).join(', ')}</TableCell>
                     <TableCell align="left">{order.status}</TableCell>
                     <TableCell align="left">{order.date}</TableCell>
                     <TableCell align="left">{order.price}</TableCell>

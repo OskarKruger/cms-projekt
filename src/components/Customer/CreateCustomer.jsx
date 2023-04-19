@@ -13,20 +13,20 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function CreateCustomer() {
   const [name, setName] = useState("");
-  const [id, setId] = useState(uuidv4());
+  // const [id, setId] = useState(uuidv4());
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ name, id });
+    console.log({ name });
   
     const newCustomer = {
-      customer_name: name,
-      customer_id: id,
+      customerName: name,
+      // customer_id: id,
     };
   
     axios
       .post(
-        "http://localhost:8000/customers", 
+        "https://localhost:5001/api/customers/CreateCustomers", 
       newCustomer,
        {},
        {
@@ -36,7 +36,7 @@ function CreateCustomer() {
       .then((response) => {
         alert("Customer created successfully");
         setName("");
-        setId(uuidv4());
+        // setId(uuidv4());
       })
       .catch((error) => {
         console.log(error);
@@ -63,14 +63,6 @@ function CreateCustomer() {
               onChange={handleNameChange}
               fullWidth
               required
-            />
-            <TextField
-              sx={{ m: 2 }}
-              label="ID"
-              disabled
-              value={id}
-              fullWidth
-              InputProps={{ readOnly: true }}
             />
             <Button type="submit" variant="contained" sx={{ m: 2 }}>
               Create Customer
