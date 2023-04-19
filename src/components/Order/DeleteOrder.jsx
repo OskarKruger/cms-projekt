@@ -43,7 +43,7 @@ function DeleteOrder() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/customers")
+      .get("https://localhost:5001/api/customers/customers")
       .then((response) => {
         setCustomers(response.data);
       })
@@ -52,7 +52,7 @@ function DeleteOrder() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/products")
+      .get("https://localhost:5001/api/products/products")
       .then((response) => {
         setProducts(response.data);
       })
@@ -60,17 +60,18 @@ function DeleteOrder() {
   }, []);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/orders")
+      .get("https://localhost:5001/api/orders/orders")
       .then((response) => {
         setorders(response.data);
       })
       .catch((error) => console.error(error));
   }, []);
 
+//Delete Order
   const deleteorderbyid = () => {
     if (selectedOrderId) {
       axios
-        .delete(`http://localhost:8000/orders/${selectedOrderId.id}`, {
+        .delete(`https://localhost:5001/api/orders/DeleteOrders/${selectedOrderId.id}`, {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
@@ -84,7 +85,7 @@ function DeleteOrder() {
   };
   const filteredOrders = orders.filter(
     (order) =>
-      order.id.toString().toLowerCase().includes(searchValue.toLowerCase()) &&
+      order.customerName.toString().toLowerCase().includes(searchValue.toLowerCase()) &&
       (!selectedCustomerId ||
         order.customer_id === parseInt(selectedCustomerId))
   );
@@ -95,7 +96,7 @@ function DeleteOrder() {
       <Button startIcon={<ArrowBackIcon />} href="/orders">Return</Button>
       <Container sx={{ margin: "10px" }}>
         <TextField
-          label="Search by ID"
+          label="Search by Name"
           value={searchValue}
           onChange={handleSearchChange}
           fullWidth
@@ -119,7 +120,7 @@ function DeleteOrder() {
                 value={order}
                 sx={{ marginBottom: "8px" }}
               >
-                {order.id} - {order.customer_name} - {order.date}
+                {order.id} - {order.customerName} - {order.date}
               </MenuItem>
             ))}
           </Select>

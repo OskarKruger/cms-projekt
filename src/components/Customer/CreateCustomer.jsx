@@ -3,6 +3,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Header from "../Header";
 import Footer from "../Footer";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -13,6 +14,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function CreateCustomer() {
   const [name, setName] = useState("");
+  const navigate = useNavigate();
   // const [id, setId] = useState(uuidv4());
 
   const handleSubmit = (event) => {
@@ -36,7 +38,7 @@ function CreateCustomer() {
       .then((response) => {
         alert("Customer created successfully");
         setName("");
-        // setId(uuidv4());
+        navigate("/customers");
       })
       .catch((error) => {
         console.log(error);
