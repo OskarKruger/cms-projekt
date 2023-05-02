@@ -18,20 +18,19 @@ import {
   Pagination,
   Button,
 } from "@mui/material";
+import { getAllOrders } from "../data/api";
 import Footer from "../components/Footer";
 
 function Orders() {
-  
-const [orders, setOrders] = React.useState([]);
 
-useEffect(() => {
-  axios.get('https://localhost:5001/api/orders/orders')
-    .then(response => {
-      console.log(response.data);
-      setOrders(response.data);
-    })
-    .catch(error => console.error(error));
-}, []);
+  const [orders, setOrders] = React.useState([]);
+  const handleData = async() => {
+    const AllOrders = await getAllOrders();
+    setOrders(AllOrders);
+  }
+  useEffect(() => {
+    handleData();
+  }, []);
 
   return (
     <div>

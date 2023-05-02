@@ -13,9 +13,15 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
+import {
+  getAllCustomers,
+  getAllOrders,
+  getAllProducts,
+  deleteOrderById,
+} from "../../data/api";
 
 function DeleteOrder() {
-  const [orders, setorders] = React.useState([]);
+  const [orders, setOrders] = React.useState([]);
   const [customers, setCustomers] = React.useState([]);
   const [products, setProducts] = React.useState([]);
 
@@ -29,63 +35,28 @@ function DeleteOrder() {
     setSearchValue(event.target.value);
   };
 
-  const handleCustomerChange = (event) => {
-    setSelectedCustomerId(event.target.value);
-  };
-
-  const handleProductChange = (event) => {
-    setSelectedProductId(event.target.value);
-  };
-
   const handleOrderChange = (event) => {
     setSelectedOrderId(event.target.value);
   };
 
-  useEffect(() => {
-    axios
-      .get("https://localhost:5001/api/customers/customers")
-      .then((response) => {
-        setCustomers(response.data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("https://localhost:5001/api/products/products")
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-  useEffect(() => {
-    axios
-      .get("https://localhost:5001/api/orders/orders")
-      .then((response) => {
-        setorders(response.data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
-//Delete Order
-  const deleteorderbyid = () => {
-    if (selectedOrderId) {
-      axios
-        .delete(`https://localhost:5001/api/orders/DeleteOrders/${selectedOrderId.id}`, {
-          headers: { "Content-Type": "application/json" },
-        })
-        .then((response) => {
-          alert("order deleted successfully");
-          navigate("/orders");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+  const handleData = async () => {
+    const AllCustomers = await getAllCustomers();
+    const AllOrders = await getAllOrders();
+    const AllProducts = await getAllProducts();
+    setProducts(AllProducts);
+    setOrders(AllOrders);
+    setCustomers(AllCustomers);
   };
+  useEffect(() => {
+    handleData();
+  }, []);
+
   const filteredOrders = orders.filter(
     (order) =>
-      order.customerName.toString().toLowerCase().includes(searchValue.toLowerCase()) &&
+      order.customerName
+        .toString()
+        .toLowerCase()
+        .includes(searchValue.toLowerCase()) &&
       (!selectedCustomerId ||
         order.customer_id === parseInt(selectedCustomerId))
   );
@@ -93,7 +64,9 @@ function DeleteOrder() {
   return (
     <div>
       <Header />
-      <Button startIcon={<ArrowBackIcon />} href="/orders">Return</Button>
+      <Button startIcon={<ArrowBackIcon />} href="/orders">
+        Return
+      </Button>
       <Container sx={{ margin: "10px" }}>
         <TextField
           label="Search by Name"
@@ -182,7 +155,7 @@ function DeleteOrder() {
       <Button
         variant="contained"
         sx={{ paddingleft: "10px", margin: "10px" }}
-        onClick={deleteorderbyid}
+        onClick={() => deleteOrderById(selectedOrderId, navigate)}
       >
         Delete
       </Button>

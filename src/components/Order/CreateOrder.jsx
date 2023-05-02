@@ -15,11 +15,18 @@ import { useEffect, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import {
+  getAllCustomers,
+  getAllOrders,
+  getAllProducts,
+  createNewOrder,
+} from "../../data/api";
 import { useNavigate } from "react-router-dom";
 
 function CreateOrder() {
   const [customers, setCustomers] = React.useState([]);
   const [products, setProducts] = React.useState([]);
+  const [orders, setOrders] = React.useState([]);
   const [cart, setCart] = React.useState([]);
 
   const [selectedCustomerId, setSelectedCustomerId] = React.useState("");
@@ -67,24 +74,16 @@ function CreateOrder() {
     setSelectedQuantity(1);
   };
 
+  const handleData = async () => {
+    const AllCustomers = await getAllCustomers();
+    const AllOrders = await getAllOrders();
+    const AllProducts = await getAllProducts();
+    setProducts(AllProducts);
+    setOrders(AllOrders);
+    setCustomers(AllCustomers);
+  };
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/customers")
-      .then((response) => {
-        console.log(response.data);
-        setCustomers(response.data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("https://localhost:5001/api/products/products")
-      .then((response) => {
-        console.log(response.data);
-        setProducts(response.data);
-      })
-      .catch((error) => console.error(error));
+    handleData();
   }, []);
 
   const createProduct = () => {
@@ -96,34 +95,23 @@ function CreateOrder() {
       alert("Please add at least one product to the cart");
       return;
     }
-  
-    //const orderId = id; 
+
     const orderData = {
-      //id: orderId, 
-      customerId: selectedCustomerId.customer_id,
-      customerName: selectedCustomerId.customer_name,
+      customerId: selectedCustomerId.customerId,
+      customerName: selectedCustomerId.customerName,
       products: cart,
       status: "20 - Order Placed",
-      price: cart.reduce((total, product) => total + product.productCost * product.quantity, 0),
+      price: cart.reduce(
+        (total, product) => total + product.productCost * product.quantity,
+        0
+      ),
     };
-  
-    axios
-      .post(
-        "https://localhost:5001/api/orders/CreateOrders",
-        orderData,
-        {},
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-        alert("Order created successfully");
-        navigate("/orders");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(orderData);
+
+    createNewOrder(orderData).then((response) => {
+      alert("Order created successfully");
+      navigate("/orders");
+    });
   };
 
   return (
@@ -161,7 +149,7 @@ function CreateOrder() {
                   >
                     {customers.map((customer) => (
                       <MenuItem key={customer.id} value={customer}>
-                        {customer.customer_name}
+                        {customer.customerName}
                       </MenuItem>
                     ))}
                   </Select>

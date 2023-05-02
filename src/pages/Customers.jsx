@@ -18,19 +18,20 @@ import {
   Pagination,
   Button,
 } from "@mui/material";
+import { getAllCustomers, getAllOrders  } from "../data/api";
 
 function Customers() {
   const [orders, setOrders] = React.useState([]);
-
   const [customers, setCustomers] = React.useState([]);
 
+  const handleData = async() => {
+    const AllCustomers = await getAllCustomers();
+    const AllOrders = await getAllOrders();
+    setOrders(AllOrders);
+    setCustomers(AllCustomers);
+  }
   useEffect(() => {
-    axios.get('https://localhost:5001/api/customers/customers')
-      .then(response => {
-        console.log(response.data);
-        setCustomers(response.data);
-      })
-      .catch(error => console.error(error));
+    handleData();
   }, []);
 
   return (

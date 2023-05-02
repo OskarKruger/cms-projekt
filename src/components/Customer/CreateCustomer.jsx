@@ -4,13 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import Header from "../Header";
 import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Container,
-  TextField,
-} from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Box, Button, Container, TextField } from "@mui/material";
+import { createNewCustomer } from "../../data/api";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function CreateCustomer() {
   const [name, setName] = useState("");
@@ -20,31 +16,20 @@ function CreateCustomer() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({ name });
-  
+
     const newCustomer = {
       customerName: name,
       // customer_id: id,
     };
-  
-    axios
-      .post(
-        "https://localhost:5001/api/customers/CreateCustomers", 
-      newCustomer,
-       {},
-       {
-        headers: { "Content-Type": "application/json" },
-      }
-      )
+    createNewCustomer(newCustomer)
       .then((response) => {
-        alert("Customer created successfully");
-        setName("");
+        console.log(response);
         navigate("/customers");
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -54,7 +39,9 @@ function CreateCustomer() {
     <>
       <Header />
       <Box>
-      <Button startIcon={<ArrowBackIcon />} href="/customers">Return</Button>
+        <Button startIcon={<ArrowBackIcon />} href="/customers">
+          Return
+        </Button>
         <Container maxWidth="sm" sx={{ margin: "50px" }}>
           <h1>Create Customer</h1>
           <form onSubmit={handleSubmit}>

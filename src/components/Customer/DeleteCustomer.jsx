@@ -2,8 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../Header";
 import Footer from "../Footer";
-import { Box, Button, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { getAllCustomers, deleteCustomerById } from "../../data/api";
 import { useNavigate } from "react-router-dom";
 
 function DeleteCustomer() {
@@ -12,13 +22,12 @@ function DeleteCustomer() {
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
+  const handleData = async () => {
+    const AllCustomers = await getAllCustomers();
+    setCustomers(AllCustomers);
+  };
   useEffect(() => {
-    axios
-      .get("https://localhost:5001/api/customers/customers")
-      .then((response) => {
-        setCustomers(response.data);
-      })
-      .catch((error) => console.error(error));
+    handleData();
   }, []);
 
   const handleCustomerChange = (event) => {
@@ -27,23 +36,17 @@ function DeleteCustomer() {
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
-
-  // Delete Customer
-  const deleteCustomerById = () => {
-    if (selectedCustomerId) {
-      axios
-        .delete(`https://localhost:5001/api/customers/DeleteCustomers/${selectedCustomerId}`, {
-          headers: { "Content-Type": "application/json" },
-        })
-        .then((response) => {
-          alert("Customer deleted successfully");
-          navigate("/customers");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  const handleDelete = async () => {
+    const result = await deleteCustomerById(selectedCustomerId);
+    if (result.success) {
+      alert("Customer deleted successfully");
+      handleData(); // Refresh the list after deletion
+    } else {
+      console.log(result.error);
+      // Optionally, show an error message if the deletion fails
     }
   };
+
   const filteredCustomers = customers.filter((customer) =>
     customer.customerName.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -74,7 +77,11 @@ function DeleteCustomer() {
               onChange={handleCustomerChange}
             >
               {filteredCustomers.map((customer) => (
-                <MenuItem key={customer.id} value={customer.id} sx={{ marginBottom: "8px" }}>
+                <MenuItem
+                  key={customer.id}
+                  value={customer.id}
+                  sx={{ marginBottom: "8px" }}
+                >
                   {customer.customerName}
                 </MenuItem>
               ))}
@@ -84,7 +91,7 @@ function DeleteCustomer() {
             variant="contained"
             color="error"
             sx={{ m: 2 }}
-            onClick={deleteCustomerById}
+            onClick={handleDelete}
           >
             Delete Customer
           </Button>

@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import haikei from "../assets/haikei.svg";
 import "../main.css";
 import {
   Box,
@@ -87,11 +86,7 @@ function Home() {
           }}
         >
           <Typography variant="h4">Our Exclusive Offers</Typography>
-          <Box
-  className="banner"
-  style={{ backgroundImage: `url(${haikei})` }}
-/>
-
+          <Box></Box>
         </Box>
 
 
