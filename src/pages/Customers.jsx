@@ -4,8 +4,7 @@ import Header from "../components/Header";
 import DeleteIcon from '@mui/icons-material/Delete';
 import PersonIcon from '@mui/icons-material/Person';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
-import { Box, Container, Stack } from "@mui/system";
-import axios from 'axios';
+import { Container, Stack } from "@mui/system";
 import {
   Table,
   TableBody,
@@ -14,7 +13,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
   Pagination,
   Button,
 } from "@mui/material";
@@ -66,7 +64,7 @@ function Customers() {
         </Stack>
         <Button variant="contained" sx={{margin: "10px"}} href="/create-customer" startIcon={<PersonIcon />}>New Customer</Button>
         <Button variant="outlined" sx={{margin: "10px"}} href="/delete-customer" startIcon={<DeleteIcon />}>Delete Customer</Button>
-        <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DesignServicesIcon />}>Edit Customer</Button>
+        <Button variant="outlined" sx={{margin: "10px"}} href="/edit-customer" startIcon={<DesignServicesIcon />}>Edit Customer</Button>
         
       </Container>
 

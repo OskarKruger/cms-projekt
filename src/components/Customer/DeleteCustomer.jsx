@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Header from "../Header";
 import Footer from "../Footer";
 import {
@@ -20,7 +19,6 @@ function DeleteCustomer() {
   const [customers, setCustomers] = useState([]);
   const [selectedCustomerId, setSelectedCustomerId] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const navigate = useNavigate();
 
   const handleData = async () => {
     const AllCustomers = await getAllCustomers();
@@ -40,10 +38,9 @@ function DeleteCustomer() {
     const result = await deleteCustomerById(selectedCustomerId);
     if (result.success) {
       alert("Customer deleted successfully");
-      handleData(); // Refresh the list after deletion
+      handleData();
     } else {
       console.log(result.error);
-      // Optionally, show an error message if the deletion fails
     }
   };
 

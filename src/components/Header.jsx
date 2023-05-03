@@ -11,9 +11,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import ArticleIcon from '@mui/icons-material/Article';
-import { grey, orange } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
 const pages = ['Orders', 'Customers', 'Store Management'];
 const settings = ['Profile', 'Settings', 'Logout'];

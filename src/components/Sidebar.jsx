@@ -7,17 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { makeStyles } from '@mui/styles';
-import { createTheme } from '@mui/material/styles';
 import { Container } from '@mui/material';
-
-const theme = createTheme({
-  spacing: 8, // sets the default spacing between elements to 8px
-  // other theme options here
-});
-
-
-
-
 
 const useStyles = makeStyles((theme) => ({
     drawer: {

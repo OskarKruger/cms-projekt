@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 import Header from "../Header";
 import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +9,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 function CreateCustomer() {
   const [name, setName] = useState("");
   const navigate = useNavigate();
-  // const [id, setId] = useState(uuidv4());
 
   const handleSubmit = (event) => {
     event.preventDefault();

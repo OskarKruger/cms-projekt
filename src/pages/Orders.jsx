@@ -5,7 +5,6 @@ import { Box, Container, Stack } from "@mui/system";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
-import axios from "axios";
 import {
   Table,
   TableBody,
@@ -14,7 +13,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
   Pagination,
   Button,
 } from "@mui/material";
@@ -77,7 +75,7 @@ function Orders() {
     </Stack>
         <Button variant="contained" sx={{margin: "10px"}} href="/create-order" startIcon={<ShoppingCartIcon />}>New Order</Button>
         <Button variant="outlined" sx={{margin: "10px"}} href="/delete-order" startIcon={<DeleteIcon />}>Delete Order</Button>
-        <Button variant="outlined" sx={{margin: "10px"}} startIcon={<DesignServicesIcon />}>Edit Order</Button>
+        <Button variant="outlined" sx={{margin: "10px"}} href="/edit-order" startIcon={<DesignServicesIcon />}>Edit Order</Button>
         </Container>
       </div>
       <Footer/>

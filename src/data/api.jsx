@@ -81,3 +81,22 @@ export const deleteCustomerById = async (selectedCustomerId) => {
     }
   }
 };
+export const updateOrder = async (orderData) => {
+    try {
+      const response = await axios.put(`${API_BASE_URL}/orders/${orderData.id}`, orderData);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating order:', error);
+      throw error;
+    }
+  };
+  export const updateCustomer = async (customerData) => {
+    try {
+      const response = await axios.put(`${API_BASE_URL}/customers/${customerData.id}`, customerData);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating customer:', error);
+      throw error;
+    }
+  };
+  

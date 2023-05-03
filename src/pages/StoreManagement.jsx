@@ -7,7 +7,7 @@ function StoreManagement() {
   return (
     <div>
       <Header/>
-      
+      <h1>Coming soon...</h1>
       <Footer/>
     </div>
   );

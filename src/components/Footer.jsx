@@ -1,6 +1,5 @@
 import { Box, Container, Menu, Paper, Typography } from "@mui/material";
 import React from "react";
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 function Footer() {
   return (

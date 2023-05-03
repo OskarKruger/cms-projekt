@@ -26,7 +26,6 @@ function DeleteOrder() {
   const [products, setProducts] = React.useState([]);
 
   const [selectedCustomerId, setSelectedCustomerId] = React.useState("");
-  const [selectedProductId, setSelectedProductId] = React.useState("");
   const [selectedOrderId, setSelectedOrderId] = React.useState("");
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();

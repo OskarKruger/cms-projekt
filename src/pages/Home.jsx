@@ -9,9 +9,7 @@ import {
   Container,
   Grid,
   Typography,
-  Paper,
 } from "@mui/material";
-import { Height } from "@mui/icons-material";
 
 function Home() {
   return (
